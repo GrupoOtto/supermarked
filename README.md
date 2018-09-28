@@ -31,3 +31,4 @@ docker-compose up --build
   - Stock DB
 - Employees API
   - Employees DB
+- Proxy
