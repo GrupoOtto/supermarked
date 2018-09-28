@@ -1,0 +1,6 @@
+[submodule "stock"]
+	path = stock
+	url = https://github.com/GrupoOtto/supermercado-stock-api.git
+[submodule "employees"]
+	path = employees
+	url = https://github.com/GrupoOtto/supermercado-rrhh-api.git

@@ -1,0 +1,44 @@
+version: '3'
+
+services:
+  stock-api:
+    build: ./stock
+    restart: always
+    ports: 
+      - 3000:3000
+    environment: 
+      DB_URL: 'mongodb://stock-db/stock'
+    volumes: 
+      - ./stock:/usr/src/app
+      - /usr/src/app/node_modules
+    depends_on:
+      - stock-db
+
+  stock-db:
+    image: mongo
+    restart: always
+    volumes:
+      - stock-data:/data/db
+
+  employees-api:
+    build: ./employees
+    restart: always
+    ports: 
+      - 3001:3000
+    environment: 
+      DB_URL: 'mongodb://employees-db/employees'
+    volumes: 
+      - ./employees:/usr/src/app
+      - /usr/src/app/node_modules
+    depends_on:
+      - employees-db
+
+  employees-db:
+    image: mongo
+    restart: always
+    volumes:
+      - employees-data:/data/db
+
+volumes:
+  stock-data:
+  employees-data:
