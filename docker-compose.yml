@@ -4,8 +4,6 @@ services:
   stock-api:
     build: ./stock
     restart: always
-    ports: 
-      - 3000:3000
     environment: 
       DB_URL: 'mongodb://stock-db/stock'
     volumes: 
@@ -23,8 +21,6 @@ services:
   employees-api:
     build: ./employees
     restart: always
-    ports: 
-      - 3001:3000
     environment: 
       DB_URL: 'mongodb://employees-db/employees'
     volumes: 
@@ -38,6 +34,18 @@ services:
     restart: always
     volumes:
       - employees-data:/data/db
+  
+  proxy:
+    build: ./proxy
+    environment: 
+      - ACME_AGREE=true
+    restart: always
+    ports: 
+      - 80:80
+      - 433:433
+    depends_on:
+      - employees-api
+      - stock-api
 
 volumes:
   stock-data:

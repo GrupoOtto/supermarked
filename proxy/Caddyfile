@@ -1,0 +1,8 @@
+0.0.0.0:80 
+gzip
+proxy /employees employees-api:3000 {
+    without /employees
+}
+proxy /stock stock-api:3000 {
+    without /stock
+}
