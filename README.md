@@ -1,4 +1,4 @@
-# Supermarked metarepo
+# Supermarket metarepo
 
 ## Description
 
