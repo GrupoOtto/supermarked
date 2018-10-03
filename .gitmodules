@@ -1,3 +1,6 @@
 [submodule "employees"]
 	path = employees
 	url = https://github.com/GrupoOtto/supermercado-rrhh-api.git
+[submodule "products"]
+	path = products
+	url = https://github.com/GrupoOtto/supermercado-products-api
