@@ -9,9 +9,8 @@ This repository contains base configurations for bootstraping the supermarket ec
 ### Clone the repo
 
 ```bash
-git clone --recursive git@github.com:GrupoOtto/supermarket.git
+git clone --recursive https://github.com/GrupoOtto/supermarket.git
 cd supermarket
-git submodule update --init --remote
 ```
 
 ### Dependencies
@@ -27,8 +26,8 @@ docker-compose up --build
 
 ## Containers
 
-- Stock API
-  - Stock DB
+- Products API
+  - Products DB
 - Employees API
   - Employees DB
 - Proxy
