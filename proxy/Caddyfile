@@ -3,6 +3,6 @@ gzip
 proxy /employees employees-api:3000 {
     without /employees
 }
-proxy /stock stock-api:3000 {
-    without /stock
+proxy /products products-api:3000 {
+    without /products
 }

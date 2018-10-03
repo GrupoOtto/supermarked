@@ -1,22 +1,22 @@
 version: '3'
 
 services:
-  stock-api:
-    build: ./stock
+  products-api:
+    build: ./products
     restart: always
     environment: 
-      DB_URL: 'mongodb://stock-db/stock'
+      DB_URL: 'mongodb://products-db/products'
     volumes: 
-      - ./stock:/usr/src/app
+      - ./products:/usr/src/app
       - /usr/src/app/node_modules
     depends_on:
-      - stock-db
+      - products-db
 
-  stock-db:
+  products-db:
     image: mongo
     restart: always
     volumes:
-      - stock-data:/data/db
+      - products-data:/data/db
 
   employees-api:
     build: ./employees
@@ -45,8 +45,8 @@ services:
       - 433:433
     depends_on:
       - employees-api
-      - stock-api
+      - products-api
 
 volumes:
-  stock-data:
+  products-data:
   employees-data:
