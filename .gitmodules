@@ -4,3 +4,6 @@
 [submodule "products"]
 	path = products
 	url = https://github.com/GrupoOtto/supermercado-products-api
+[submodule "coupons"]
+	path = coupons
+	url = https://github.com/GrupoOtto/supermercado-coupons-api
