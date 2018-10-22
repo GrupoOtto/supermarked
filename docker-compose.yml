@@ -34,7 +34,24 @@ services:
     restart: always
     volumes:
       - employees-data:/data/db
-  
+
+  coupons-api:
+    build: ./coupons
+    restart: always
+    environment: 
+      DB_URL: 'mongodb://coupons-db/coupons'
+    volumes: 
+      - ./coupons:/usr/src/app
+      - /usr/src/app/node_modules
+    depends_on:
+      - coupons-db
+
+  coupons-db:
+    image: mongo
+    restart: always
+    volumes:
+      - coupons-data:/data/db
+
   proxy:
     build: ./proxy
     environment: 
@@ -46,7 +63,9 @@ services:
     depends_on:
       - employees-api
       - products-api
+      - coupons-api
 
 volumes:
   products-data:
   employees-data:
+  coupons-data:
