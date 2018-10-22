@@ -1,8 +1,8 @@
 0.0.0.0:80 
 gzip
-proxy /employees employees-api:3000 {
+proxy /employees {$EMPLOYEES_API}:{$EMPLOYEES_PORT} {
     without /employees
 }
-proxy /products products-api:3000 {
+proxy /products {$PRODUCTS_API}:{$PRODUCTS_PORT} {
     without /products
 }

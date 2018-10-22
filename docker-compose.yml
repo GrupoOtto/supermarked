@@ -56,6 +56,10 @@ services:
     build: ./proxy
     environment: 
       - ACME_AGREE=true
+      - EMPLOYEES_API=employees-api
+      - EMPLOYEES_PORT=3000
+      - PRODUCTS_API=products-api
+      - PRODUCTS_PORT=3000
     restart: always
     ports: 
       - 80:80
