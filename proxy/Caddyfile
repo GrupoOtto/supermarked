@@ -6,3 +6,6 @@ proxy /employees {$EMPLOYEES_API}:{$EMPLOYEES_PORT} {
 proxy /products {$PRODUCTS_API}:{$PRODUCTS_PORT} {
     without /products
 }
+proxy /coupons {$COUPONS_API}:{$COUPONS_PORT} {
+    without /coupons
+}
