@@ -10,3 +10,6 @@
 [submodule "supermarket-web"]
 	path = supermarket-web
 	url = https://github.com/GrupoOtto/supermarket-web
+[submodule "users"]
+	path = users
+	url = https://github.com/GrupoOtto/supermarket-users-service.git
