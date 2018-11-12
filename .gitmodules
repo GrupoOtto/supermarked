@@ -7,3 +7,6 @@
 [submodule "coupons"]
 	path = coupons
 	url = https://github.com/GrupoOtto/supermercado-coupons-api
+[submodule "users"]
+	path = users
+	url = https://github.com/GrupoOtto/supermarket-users-service.git
