@@ -14,5 +14,5 @@
 	path = users
 	url = https://github.com/GrupoOtto/supermarket-users-service.git
 [submodule "supermarket-sales"]
-	path = supermarket-sales
+	path = sales
 	url = https://github.com/GrupoOtto/supermarket-sales.git
