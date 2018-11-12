@@ -7,12 +7,12 @@
 [submodule "coupons"]
 	path = coupons
 	url = https://github.com/GrupoOtto/supermercado-coupons-api
-[submodule "supermarket-web"]
-	path = web
-	url = https://github.com/GrupoOtto/supermarket-web
 [submodule "users"]
 	path = users
 	url = https://github.com/GrupoOtto/supermarket-users-service.git
-[submodule "supermarket-sales"]
+[submodule "sales"]
 	path = sales
 	url = https://github.com/GrupoOtto/supermarket-sales.git
+[submodule "web"]
+	path = web
+	url = https://github.com/GrupoOtto/supermarket-web.git
