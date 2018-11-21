@@ -16,3 +16,6 @@
 [submodule "web"]
 	path = web
 	url = https://github.com/GrupoOtto/supermarket-web.git
+[submodule "bpm"]
+	path = bpm
+	url = https://github.com/GrupoOtto/supermarket-bpm.git
