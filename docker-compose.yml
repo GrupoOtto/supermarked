@@ -121,7 +121,7 @@ services:
       - EMPLOYEES_API=employees:3000
       - PRODUCTS_API=products:3000
       - SALES_API=sales:3000
-      - USERS_API=products:3000
+      - USERS_API=users:3000
       - WEB=web:3000
       - PORT=80
     restart: always
