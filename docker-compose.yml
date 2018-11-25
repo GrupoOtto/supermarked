@@ -1,75 +1,141 @@
 version: '3'
 
 services:
-  products-api:
-    build: ./products
-    restart: always
-    environment: 
-      DB_URL: 'mongodb://products-db/products'
-    volumes: 
-      - ./products:/usr/src/app
-      - /usr/src/app/node_modules
-    depends_on:
-      - products-db
-
-  products-db:
+  db:
     image: mongo
     restart: always
     volumes:
-      - products-data:/data/db
+      - data:/data/db
+    networks: 
+      - db
 
-  employees-api:
-    build: ./employees
+  bonita:
+    image: bonita
+    restart: always
+    networks: 
+      - bonita
+
+  bpm:
+    build: ./bpm
     restart: always
     environment: 
-      DB_URL: 'mongodb://employees-db/employees'
+      BONITA_URL: 'http://bonita:8080/bonita'
     volumes: 
-      - ./employees:/usr/src/app
+      - ./bpm:/usr/src/app
       - /usr/src/app/node_modules
-    depends_on:
-      - employees-db
+    networks: 
+      - public
+      - bonita
 
-  employees-db:
-    image: mongo
-    restart: always
-    volumes:
-      - employees-data:/data/db
-
-  coupons-api:
+  coupons:
     build: ./coupons
     restart: always
     environment: 
-      DB_URL: 'mongodb://coupons-db/coupons'
+      DB_URL: 'mongodb://db/coupons'
     volumes: 
       - ./coupons:/usr/src/app
       - /usr/src/app/node_modules
     depends_on:
-      - coupons-db
+      - db
+    networks: 
+      - public
+      - db
 
-  coupons-db:
-    image: mongo
+  employees:
+    build: ./employees
     restart: always
-    volumes:
-      - coupons-data:/data/db
+    environment: 
+      DB_URL: 'mongodb://db/employees'
+    volumes: 
+      - ./employees:/usr/src/app
+      - /usr/src/app/node_modules
+    depends_on:
+      - db
+    networks: 
+      - public
+      - db
+
+  products:
+    build: ./products
+    restart: always
+    environment: 
+      DB_URL: 'mongodb://db/products'
+    volumes: 
+      - ./products:/usr/src/app
+      - /usr/src/app/node_modules
+    depends_on:
+      - db
+    networks: 
+      - public
+      - db
+
+  # sales:
+  #   build: ./sales
+  #   restart: always
+  #   environment: 
+  #     DB_URL: 'mongodb://db/sales'
+  #   volumes: 
+  #     - ./sales:/usr/src/app
+  #     - /usr/src/app/node_modules
+  #   depends_on:
+  #     - db
+  #   networks: 
+  #     - public
+  #     - db
+
+  users:
+    build: ./users
+    restart: always
+    environment: 
+      DB_URL: 'mongodb://db/users'
+    volumes: 
+      - ./users:/usr/src/app
+      - /usr/src/app/node_modules
+    depends_on:
+      - db
+    networks: 
+      - public
+      - db
+  
+  web:
+    build:
+      context: ./web
+      dockerfile: Dockerfile-dev
+    restart: always
+    ports:
+      - 3000:3000
+    networks:
+      - public
+    volumes: 
+      - ./web:/usr/src/app
+      - /usr/src/app/node_modules
+    
 
   proxy:
     build: ./proxy
     environment: 
       - ACME_AGREE=true
-      - EMPLOYEES_API=employees-api:3000
-      - PRODUCTS_API=products-api:3000
-      - COUPONS_API=coupons-api:3000
+      - BONITA=bonita:8080/bonita
+      - BPM_API=products:3000
+      - COUPONS_API=coupons:3000
+      - EMPLOYEES_API=employees:3000
+      - PRODUCTS_API=products:3000
+      - SALES_API=sales:3000
+      - USERS_API=products:3000
+      - WEB=web:3000
       - PORT=80
     restart: always
     ports: 
       - 80:80
       - 433:433
-    depends_on:
-      - employees-api
-      - products-api
-      - coupons-api
+    networks:
+      - public
+      - bonita
 
 volumes:
-  products-data:
-  employees-data:
-  coupons-data:
+  data:
+
+networks: 
+  public:
+  bonita:
+  db:
