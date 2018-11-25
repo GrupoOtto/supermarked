@@ -116,7 +116,7 @@ services:
     environment: 
       - ACME_AGREE=true
       - BONITA=bonita:8080/bonita
-      - BPM_API=products:3000
+      - BPM_API=bpm:3000
       - COUPONS_API=coupons:3000
       - EMPLOYEES_API=employees:3000
       - PRODUCTS_API=products:3000
