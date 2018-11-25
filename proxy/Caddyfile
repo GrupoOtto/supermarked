@@ -1,11 +1,28 @@
 0.0.0.0:{$PORT} 
 gzip
-proxy /employees {$EMPLOYEES_API} {
-    without /employees
+
+proxy /bpm {$BPM_API} {
+    without /bpm
 }
-proxy /products {$PRODUCTS_API} {
-    without /products
-}
+
 proxy /coupons {$COUPONS_API} {
     without /coupons
 }
+
+proxy /employees {$EMPLOYEES_API} {
+    without /employees
+}
+
+proxy /products {$PRODUCTS_API} {
+    without /products
+}
+
+proxy /sales {$SALES_API} {
+    without /sales
+}
+
+proxy /users {$USERS_API} {
+    without /users
+}
+
+proxy / {$WEB} 
