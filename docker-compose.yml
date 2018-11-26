@@ -69,19 +69,19 @@ services:
       - public
       - db
 
-  # sales:
-  #   build: ./sales
-  #   restart: always
-  #   environment: 
-  #     DB_URL: 'mongodb://db/sales'
-  #   volumes: 
-  #     - ./sales:/usr/src/app
-  #     - /usr/src/app/node_modules
-  #   depends_on:
-  #     - db
-  #   networks: 
-  #     - public
-  #     - db
+  sales:
+    build: ./sales
+    restart: always
+    environment: 
+      DB_URL: 'mongodb://db/sales'
+    volumes: 
+      - ./sales:/usr/src/app
+      - /usr/src/app/node_modules
+    depends_on:
+      - db
+    networks: 
+      - public
+      - db
 
   users:
     build: ./users

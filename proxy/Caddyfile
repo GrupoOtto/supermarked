@@ -25,6 +25,10 @@ proxy /api/users {$USERS_API} {
     without /api/users
 }
 
+proxy /api/sales {$SALES_API} {
+    without /api/sales
+}
+
 proxy /bonita {$BONITA} {
     without /bonita
 }
