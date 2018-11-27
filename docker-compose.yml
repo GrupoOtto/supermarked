@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 services:
   db:
@@ -6,97 +6,97 @@ services:
     restart: always
     volumes:
       - data:/data/db
-    networks: 
+    networks:
       - db
 
   bonita:
     image: bonita
     restart: always
-    networks: 
+    networks:
       - bonita
 
   bpm:
     build: ./bpm
     restart: always
-    environment: 
-      BONITA_URL: 'http://bonita:8080/bonita'
-    volumes: 
+    environment:
+      BONITA_URL: "http://bonita:8080/bonita"
+    volumes:
       - ./bpm:/usr/src/app
       - /usr/src/app/node_modules
-    networks: 
+    networks:
       - public
       - bonita
 
   coupons:
     build: ./coupons
     restart: always
-    environment: 
-      DB_URL: 'mongodb://db/coupons'
-    volumes: 
+    environment:
+      DB_URL: "mongodb://db/coupons"
+    volumes:
       - ./coupons:/usr/src/app
       - /usr/src/app/node_modules
     depends_on:
       - db
-    networks: 
+    networks:
       - public
       - db
 
   employees:
     build: ./employees
     restart: always
-    environment: 
-      DB_URL: 'mongodb://db/employees'
-    volumes: 
+    environment:
+      DB_URL: "mongodb://db/employees"
+    volumes:
       - ./employees:/usr/src/app
       - /usr/src/app/node_modules
     depends_on:
       - db
-    networks: 
+    networks:
       - public
       - db
 
   products:
     build: ./products
     restart: always
-    environment: 
-      DB_URL: 'mongodb://db/products'
-    volumes: 
+    environment:
+      DB_URL: "mongodb://db/products"
+    volumes:
       - ./products:/usr/src/app
       - /usr/src/app/node_modules
     depends_on:
       - db
-    networks: 
+    networks:
       - public
       - db
 
   sales:
     build: ./sales
     restart: always
-    environment: 
-      DB_URL: 'mongodb://db/sales'
-    volumes: 
+    environment:
+      DB_URL: "mongodb://db/sales"
+    volumes:
       - ./sales:/usr/src/app
       - /usr/src/app/node_modules
     depends_on:
       - db
-    networks: 
+    networks:
       - public
       - db
 
   users:
     build: ./users
     restart: always
-    environment: 
-      DB_URL: 'mongodb://db/users'
-    volumes: 
+    environment:
+      DB_URL: "mongodb://db/users"
+    volumes:
       - ./users:/usr/src/app
       - /usr/src/app/node_modules
     depends_on:
       - db
-    networks: 
+    networks:
       - public
       - db
-  
+
   web:
     build:
       context: ./web
@@ -106,14 +106,13 @@ services:
       - 3000:3000
     networks:
       - public
-    volumes: 
+    volumes:
       - ./web:/usr/src/app
       - /usr/src/app/node_modules
-    
 
   proxy:
     build: ./proxy
-    environment: 
+    environment:
       - ACME_AGREE=true
       - BONITA=bonita:8080/bonita
       - BPM_API=bpm:3000
@@ -125,7 +124,7 @@ services:
       - WEB=web:3000
       - PORT=80
     restart: always
-    ports: 
+    ports:
       - 80:80
       - 433:433
     networks:
@@ -135,7 +134,7 @@ services:
 volumes:
   data:
 
-networks: 
+networks:
   public:
   bonita:
   db:
