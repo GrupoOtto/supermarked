@@ -35,8 +35,13 @@ sh ./run-seeds.sh
 
 After the seeds end you'll have two users:
 
-- user:user (Normal client user)
-- employee:employee (Normal client user)
+- user@ksupermarket.com:user (Normal client user)
+- employee@ksupermarket.com:employee (Normal client user)
+
+And the following coupons:
+- COUPON-INFINITY (an infinity coupon)
+- COUPON-1USE (a one use coupon)
+- COUPON-EXPIRED (an expirate coupon)
 
 ### Shutdown
 
