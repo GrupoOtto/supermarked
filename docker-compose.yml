@@ -8,6 +8,23 @@ services:
       - data:/data/db
     networks:
       - db
+  
+  influx:
+    image: influxdb
+    environment: 
+      - INFLUXDB_DB=sales
+    volumes:
+      - influx_data:/var/lib/influxdb
+    networks: 
+      - influx
+    
+  grafana:
+    image: grafana/grafana
+    ports: 
+      - 3001:3000
+    networks: 
+      - public
+      - influx
 
   bonita:
     image: qoomon/docker-host
@@ -27,6 +44,7 @@ services:
     networks:
       - public
       - bonita
+      - influx
 
   coupons:
     build: ./coupons
@@ -117,6 +135,7 @@ services:
       - BPM_API=bpm:3000
       - COUPONS_API=coupons:3000
       - EMPLOYEES_API=employees:3000
+      - GRAFANA=grafana:3000
       - PRODUCTS_API=products:3000
       - SALES_API=sales:3000
       - USERS_API=users:3000
@@ -132,8 +151,10 @@ services:
 
 volumes:
   data:
+  influx_data:
 
 networks:
   public:
   bonita:
   db:
+  influx:
