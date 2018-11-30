@@ -33,4 +33,6 @@ proxy /bonita {$BONITA} {
     without /bonita
 }
 
+proxy /monitor {$GRAFANA} 
+
 proxy / {$WEB} 
